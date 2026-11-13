@@ -1,0 +1,121 @@
+/* Desktop (1440) — four 360 × 500 cards per row */
+.story-grid__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.story-card {
+  --card-height: 31.25rem; /* 500px */
+  --card-padding: 2.5rem; /* 40px */
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  height: var(--card-height);
+  color: var(--clr-white);
+  overflow: hidden;
+  transition: transform 300ms ease-in-out;
+}
+
+.story-card__image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+/* Black fade behind the text: bottom 350px of the card */
+.story-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 21.875rem;
+  background-image: var(--gradient-card);
+}
+
+/* Gradient accent bar revealed on hover */
+.story-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--bar-size);
+  background-image: var(--gradient-accent);
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.story-card:is(:hover, :focus-visible) {
+  transform: translateY(-1.5rem);
+}
+
+.story-card:is(:hover, :focus-visible)::after {
+  opacity: 1;
+}
+
+.story-card__content {
+  width: 100%;
+  padding: 0 var(--card-padding) var(--card-padding);
+}
+
+.story-card__date,
+.story-card__author {
+  font-size: var(--fs-small);
+  line-height: 1.0625rem;
+}
+
+.story-card__title {
+  margin-top: 0.25rem;
+}
+
+.story-card__title:first-child {
+  margin-top: 0;
+}
+
+.story-card__author {
+  margin-top: 0.25rem;
+}
+
+.story-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid rgb(255 255 255 / 0.25);
+}
+
+/* Tablet (768) — two cards per row */
+@media (max-width: 63.9375rem) {
+  .story-grid__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .story-card {
+    --card-padding: 2.6875rem; /* 43px */
+  }
+}
+
+/* Mobile (375) — one 375px card per row */
+@media (max-width: 47.9375rem) {
+  .story-grid__list {
+    grid-template-columns: 1fr;
+  }
+
+  .story-card {
+    --card-height: 23.4375rem; /* 375px */
+    --card-padding: 2.625rem; /* 42px */
+  }
+
+  .story-grid--home .story-card {
+    --card-padding: var(--container-gutter);
+  }
+
+  .story-grid--home .story-card::before {
+    height: 100%;
+  }
+}

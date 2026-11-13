@@ -1,0 +1,271 @@
+/* ==========================================================================
+   Design tokens — taken from the "Design System" frame of the Figma file.
+   Every size is expressed in rem (1rem = 16px in the design).
+   ========================================================================== */
+:root {
+  /* Colors */
+  --clr-black: #000000;
+  --clr-white: #ffffff;
+  --clr-light-grey: #dfdfdf;
+  --clr-off-white: #f5f5f5;
+  --clr-overlay: rgb(0 0 0 / 0.5);
+
+  /* Main accent: #FFC593 → #BC7198 → #5A77FF */
+  --gradient-accent: linear-gradient(
+    26.57deg,
+    #ffc593 0%,
+    #bc7198 43.29%,
+    #5a77ff 83.33%
+  );
+  --gradient-card: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.661) 100%
+  );
+
+  /* Typography */
+  --ff-base: 'DM Sans', system-ui, sans-serif;
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+  --fs-heading-xl: 2.5rem; /* H1/H2 large — 40px / 48px / 4.17px */
+  --lh-heading-xl: 3rem;
+  --ls-heading-xl: 0.2604rem;
+  --fs-heading-m: 1.5rem; /* H2 — 24px / 25px */
+  --lh-heading-m: 1.5625rem;
+  --fs-heading-s: 1.125rem; /* H3 — 18px / 25px */
+  --lh-heading-s: 1.5625rem;
+  --fs-heading-xs: 0.75rem; /* H4 — 12px / 16px / 2px */
+  --lh-heading-xs: 1rem;
+  --ls-heading-xs: 0.125rem;
+  --fs-body: 0.9375rem; /* Body — 15px / 25px */
+  --lh-body: 1.5625rem;
+  --fs-small: 0.8125rem; /* Card meta — 13px */
+
+  /* Layout */
+  --container-width: 69.375rem; /* 1110px */
+  --container-gutter: 2.4375rem; /* 39px (tablet) */
+  --header-height: 4.5rem; /* 72px */
+  --bar-size: 0.375rem; /* 6px gradient accent bar */
+
+  --transition: 200ms ease-in-out;
+}
+
+@media (max-width: 47.9375rem) {
+  :root {
+    --fs-heading-xl: 2rem; /* 32px / 40px / 3.33px */
+    --lh-heading-xl: 2.5rem;
+    --ls-heading-xl: 0.2083rem;
+    --container-gutter: 2.0625rem; /* 33px */
+  }
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--ff-base);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+  color: var(--clr-black);
+  background-color: var(--clr-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.has-menu-open {
+  overflow: hidden;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+.container {
+  width: min(100% - 2 * var(--container-gutter), var(--container-width));
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  padding: 0;
+  margin: -0.0625rem;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Typography helpers — all section titles are <h2>, the class sets the size */
+.heading-xl {
+  font-size: var(--fs-heading-xl);
+  line-height: var(--lh-heading-xl);
+  letter-spacing: var(--ls-heading-xl);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.heading-m {
+  font-size: var(--fs-heading-m);
+  line-height: var(--lh-heading-m);
+  font-weight: var(--fw-bold);
+}
+
+.heading-s {
+  font-size: var(--fs-heading-s);
+  line-height: var(--lh-heading-s);
+  font-weight: var(--fw-bold);
+}
+
+.heading-xs {
+  font-size: var(--fs-heading-xs);
+  line-height: var(--lh-heading-xs);
+  letter-spacing: var(--ls-heading-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.text-muted {
+  opacity: 0.6;
+}
+
+/* Responsive images fill whatever box they are placed in */
+.cover-image,
+.cover-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.cover-image img {
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Buttons — "Button 1" (dark) and "Button 3" (light) from the design system.
+   Hover (and keyboard focus) turns both light grey with black text.
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: var(--fs-heading-xs);
+  line-height: var(--lh-heading-xs);
+  letter-spacing: var(--ls-heading-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+.btn--dark {
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+}
+
+.btn--light {
+  background-color: var(--clr-white);
+  color: var(--clr-black);
+}
+
+.btn:is(:hover, :focus-visible) {
+  background-color: var(--clr-light-grey);
+  color: var(--clr-black);
+}
+
+/* ==========================================================================
+   Arrow link — "Button 2" (dark text) and "Button 4" (light text).
+   Hover underlines the label.
+   ========================================================================== */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.125rem;
+  font-size: var(--fs-heading-xs);
+  line-height: var(--lh-heading-xs);
+  letter-spacing: var(--ls-heading-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.arrow-link__label {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.125rem;
+  transition: text-decoration-color var(--transition);
+}
+
+.arrow-link:is(:hover, :focus-visible) .arrow-link__label {
+  text-decoration-color: currentColor;
+}
+
+.arrow-link__icon {
+  flex-shrink: 0;
+  width: 2.6875rem;
+  height: 0.875rem;
+}
+
+/* ==========================================================================
+   Gradient accent bar shared by heroes and banners
+   ========================================================================== */
+.accent-bar {
+  position: relative;
+}
+
+.accent-bar::before {
+  content: '';
+  position: absolute;
+  background-image: var(--gradient-accent);
+}

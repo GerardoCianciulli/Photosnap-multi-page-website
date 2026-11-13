@@ -1,0 +1,148 @@
+/* Desktop (1440) — 731px wide table */
+.compare {
+  padding-block: 10rem; /* 160px above and below */
+}
+
+.compare__title {
+  text-align: center;
+}
+
+.compare__table {
+  width: 100%;
+  max-width: 45.6875rem; /* 731px */
+  margin: 3.5rem auto 0; /* 56px below the title */
+}
+
+.compare__table th,
+.compare__table td {
+  padding: 1.4375rem 0 1.5rem;
+  font-size: var(--fs-heading-xs);
+  line-height: var(--lh-heading-xs);
+  letter-spacing: var(--ls-heading-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.compare__table th:first-child {
+  padding-left: 1.5rem;
+  text-align: left;
+}
+
+.compare__table thead th {
+  width: 8.75rem; /* 140px plan columns */
+  padding-top: 0;
+  padding-bottom: 1.4375rem;
+  border-bottom: 0.0625rem solid var(--clr-black);
+}
+
+.compare__table thead th:first-child {
+  width: auto;
+}
+
+.compare__table tbody tr {
+  border-bottom: 0.0625rem solid var(--clr-light-grey);
+}
+
+.compare__table td img {
+  display: inline-block;
+  width: 1.125rem;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Tablet (768) — full container width (689px) */
+@media (max-width: 63.9375rem) {
+  .compare {
+    padding-block: 7rem; /* 112px */
+  }
+
+  .compare__table {
+    max-width: none;
+    margin-top: 4rem;
+  }
+
+  .compare__table thead th {
+    width: 20.3%; /* 140px of the 689px tablet table */
+  }
+}
+
+/* Mobile (375) — the title is hidden and every row becomes a 3-up grid */
+@media (max-width: 47.9375rem) {
+  .compare {
+    width: min(100% - 3.625rem, 19.875rem);
+    padding-block: 4rem;
+  }
+
+  .compare__title {
+    position: absolute;
+    width: 0.0625rem;
+    height: 0.0625rem;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .compare__table,
+  .compare__table thead {
+    display: block;
+  }
+
+  .compare__table {
+    margin-top: 0;
+  }
+
+  .compare__table thead tr {
+    display: block;
+    border-bottom: 0.0625rem solid var(--clr-black);
+  }
+
+  .compare__table thead th {
+    display: none;
+  }
+
+  .compare__table thead th:first-child {
+    display: block;
+    padding: 0 0 1.4375rem;
+    border-bottom: 0;
+  }
+
+  .compare__table tbody {
+    display: block;
+  }
+
+  .compare__table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-bottom: 1.5rem;
+  }
+
+  .compare__table tbody th:first-child {
+    grid-column: 1 / -1;
+    padding: 1.4375rem 0 1rem;
+  }
+
+  .compare__table td {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    min-height: 2.0625rem;
+    padding: 0;
+    text-align: left;
+  }
+
+  /* Plan name above each check mark */
+  .compare__table td::before {
+    content: attr(data-label);
+    font-size: 0.625rem;
+    line-height: 0.8125rem;
+    letter-spacing: 0.1042rem;
+    opacity: 0.5;
+  }
+
+  .compare__table td img {
+    width: 1rem;
+  }
+}

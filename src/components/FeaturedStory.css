@@ -1,0 +1,79 @@
+/* Desktop (1440 × 650) — copy over the photo, left aligned at 112px */
+.featured-story {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: 40.625rem; /* 650px */
+  color: var(--clr-white);
+  background-color: var(--clr-black);
+}
+
+.featured-story__image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.featured-story__panel {
+  width: 100%;
+  padding-inline: 7rem; /* 112px */
+}
+
+.featured-story__content {
+  max-width: 24.1875rem; /* 387px */
+}
+
+.featured-story__title {
+  margin-top: 1.5rem;
+}
+
+.featured-story__meta {
+  margin-top: 1rem;
+  font-size: var(--fs-small);
+  line-height: 1.0625rem;
+}
+
+.featured-story__date {
+  margin-right: 0.5rem;
+  opacity: 0.75;
+}
+
+.featured-story__body {
+  margin-top: 1.5rem;
+}
+
+.featured-story__link {
+  display: flex;
+  width: fit-content;
+  margin-top: 1.5rem;
+}
+
+/* Tablet (768 × 650) */
+@media (max-width: 63.9375rem) {
+  .featured-story__panel {
+    padding-inline: var(--container-gutter);
+  }
+}
+
+/* Mobile (375) — photo on top, copy on a black panel below */
+@media (max-width: 47.9375rem) {
+  .featured-story {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+  }
+
+  .featured-story__image {
+    position: static;
+    height: 19.8125rem; /* 317px */
+  }
+
+  .featured-story__panel {
+    padding: 3rem 1.8125rem; /* 48px / 29px */
+  }
+
+  .featured-story__title {
+    margin-top: 1rem;
+  }
+}

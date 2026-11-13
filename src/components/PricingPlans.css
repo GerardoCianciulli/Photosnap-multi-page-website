@@ -1,0 +1,202 @@
+/* Desktop (1440) */
+.pricing-plans {
+  padding-top: 7.5rem; /* 120px */
+}
+
+/* Monthly ◯ Yearly */
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.billing-toggle__label {
+  font-size: var(--fs-heading-s);
+  line-height: var(--lh-heading-s);
+  font-weight: var(--fw-bold);
+  opacity: 0.5;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity var(--transition);
+}
+
+.billing-toggle__label.is-active {
+  opacity: 1;
+}
+
+.billing-switch {
+  position: relative;
+  width: 4rem;
+  height: 2rem;
+  border-radius: 1rem;
+  background-color: var(--clr-light-grey);
+  transition: background-color var(--transition);
+}
+
+.billing-switch__thumb {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--clr-black);
+  transition:
+    transform var(--transition),
+    background-color var(--transition);
+}
+
+.billing-switch[aria-checked='true'] {
+  background-color: var(--clr-black);
+}
+
+.billing-switch[aria-checked='true'] .billing-switch__thumb {
+  transform: translateX(2rem);
+  background-color: var(--clr-white);
+}
+
+/* Plan cards: Basic / Business 350 × 407, Pro 350 × 470 */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 1.875rem;
+  margin-top: 3rem;
+}
+
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3.5rem 2.5rem 2.5rem;
+  text-align: center;
+  background-color: var(--clr-off-white);
+}
+
+.plan--featured {
+  padding-block: 5.5rem 4.4375rem;
+  color: var(--clr-white);
+  background-color: var(--clr-black);
+}
+
+.plan--featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--bar-size);
+  background-image: var(--gradient-accent);
+}
+
+.plan__description {
+  margin-top: 1.125rem;
+}
+
+.plan__price {
+  margin-top: 2.5rem;
+}
+
+/* Prices stay 40px / 48px on every screen size */
+.plan__amount {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  letter-spacing: 0.2604rem;
+  font-weight: var(--fw-bold);
+}
+
+.plan__cta {
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
+/* Tablet (768) — stacked wide cards with the price on the right */
+@media (max-width: 63.9375rem) {
+  .pricing-plans {
+    padding-top: 7rem; /* 112px */
+  }
+
+  .plans {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .plan,
+  .plan--featured {
+    display: grid;
+    grid-template-columns: 16.875rem 1fr;
+    grid-template-areas:
+      'intro price'
+      'cta   .';
+    align-items: start;
+    padding: 2.5rem 3rem 2.5rem 2.5rem;
+    text-align: left;
+  }
+
+  .plan--featured::before {
+    bottom: 0;
+    right: auto;
+    width: var(--bar-size);
+    height: auto;
+  }
+
+  .plan__intro {
+    grid-area: intro;
+  }
+
+  .plan__price {
+    grid-area: price;
+    justify-self: end;
+    margin-top: 0;
+    text-align: right;
+  }
+
+  .plan__cta {
+    grid-area: cta;
+    margin-top: 2rem;
+  }
+}
+
+/* Mobile (375) — stacked 318 × 407 cards */
+@media (max-width: 47.9375rem) {
+  .pricing-plans {
+    width: min(100% - 3.625rem, 19.875rem);
+    padding-top: 4rem;
+  }
+
+  .plans {
+    gap: 1.5rem;
+  }
+
+  .plan,
+  .plan--featured {
+    display: flex;
+    padding: 3.5rem 1.3125rem 2.5rem; /* 56 / 21 / 40 */
+    text-align: center;
+  }
+
+  .plan--featured {
+    padding-block: 3rem;
+  }
+
+  .plan--featured::before {
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: var(--bar-size);
+  }
+
+  .plan__price {
+    justify-self: auto;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .plan__cta {
+    max-width: 15.3125rem; /* 245px */
+    margin-top: 2.5rem;
+  }
+}

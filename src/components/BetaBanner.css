@@ -1,0 +1,60 @@
+/* Desktop (1440 × 280) */
+.beta-banner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: 17.5rem; /* 280px */
+  color: var(--clr-white);
+  background-color: var(--clr-black);
+}
+
+/* Vertical accent bar on the left edge, full height */
+.beta-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--bar-size);
+  background-image: var(--gradient-accent);
+}
+
+.beta-banner__image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.beta-banner__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.beta-banner__title {
+  max-width: 25rem; /* 400px */
+}
+
+/* Mobile (375 × 288) — stacked, short bar along the top */
+@media (max-width: 47.9375rem) {
+  .beta-banner {
+    align-items: flex-start;
+    min-height: 18rem;
+    padding-block: 4rem;
+  }
+
+  .beta-banner::before {
+    bottom: auto;
+    left: var(--container-gutter);
+    width: 8rem;
+    height: var(--bar-size);
+  }
+
+  .beta-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+}

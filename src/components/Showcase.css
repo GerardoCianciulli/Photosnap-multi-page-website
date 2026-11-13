@@ -1,0 +1,140 @@
+/* Desktop (1440) — 610px text panel beside an 830px photo */
+.showcase {
+  --panel-width: 38.125rem; /* 610px */
+  --panel-padding: 7rem; /* 112px */
+  --showcase-height: 37.5rem; /* 600px */
+
+  display: grid;
+  grid-template-columns: var(--panel-width) 1fr;
+  grid-template-areas: 'panel media';
+  min-height: var(--showcase-height);
+}
+
+.showcase--reverse {
+  grid-template-columns: 1fr var(--panel-width);
+  grid-template-areas: 'media panel';
+}
+
+.showcase--hero {
+  --showcase-height: 40.625rem; /* 650px */
+}
+
+.showcase--page {
+  --showcase-height: 30.625rem; /* 490px */
+}
+
+.showcase--dark .showcase__panel {
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+}
+
+.showcase--light .showcase__panel {
+  background-color: var(--clr-white);
+  color: var(--clr-black);
+}
+
+.showcase__media {
+  grid-area: media;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.showcase__panel {
+  grid-area: panel;
+  display: flex;
+  align-items: center;
+  padding-inline: var(--panel-padding);
+}
+
+.showcase__content {
+  width: 100%;
+  max-width: 24.1875rem; /* 387px */
+}
+
+/* Vertical bar on the panel's left edge, as tall as the text block */
+.showcase__content.accent-bar::before {
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * var(--panel-padding));
+  width: var(--bar-size);
+}
+
+.showcase__body {
+  margin-top: 1.3125rem; /* 21px */
+}
+
+.showcase__action {
+  display: flex;
+  margin-top: 3rem;
+}
+
+/* Tablet (768) — 495px text panel beside a 273px photo */
+@media (max-width: 63.9375rem) {
+  .showcase {
+    --panel-width: 64.45%;
+    --panel-padding: 3.375rem; /* 54px */
+  }
+
+  /* Keeps the 387px text column intact when a scrollbar narrows the page */
+  .showcase__panel {
+    padding-right: 2rem;
+  }
+}
+
+/* Mobile (375) — photo stacked above the text panel */
+@media (max-width: 47.9375rem) {
+  .showcase,
+  .showcase--reverse {
+    --panel-padding: var(--container-gutter);
+
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'media'
+      'panel';
+    min-height: 0;
+  }
+
+  .showcase__media {
+    height: 16.9375rem; /* 271px */
+  }
+
+  .showcase--hero .showcase__media,
+  .showcase--page .showcase__media {
+    height: 18.375rem; /* 294px */
+  }
+
+  /* 318px text column: 33px from the left edge, 24px from the right */
+  .showcase__panel {
+    padding: 4.5rem 1.5rem 4.5rem var(--container-gutter);
+  }
+
+  .showcase--page .showcase__panel {
+    padding-inline: 1.8125rem; /* 29px */
+  }
+
+  .showcase__content {
+    max-width: 19.875rem; /* 318px */
+  }
+
+  .showcase--hero .showcase__panel,
+  .showcase--section .showcase__panel {
+    min-height: 26.1875rem; /* 419px */
+  }
+
+  /* Short horizontal bar flush with the top of the panel */
+  .showcase__content.accent-bar::before {
+    top: -4.5rem;
+    bottom: auto;
+    left: 0;
+    width: 8rem;
+    height: var(--bar-size);
+  }
+
+  .showcase__body {
+    margin-top: 1rem;
+  }
+
+  .showcase__action {
+    margin-top: 1.4375rem;
+  }
+}

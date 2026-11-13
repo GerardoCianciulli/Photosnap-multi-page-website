@@ -1,0 +1,70 @@
+/* Desktop (1440) — three 350px columns */
+.feature-grid {
+  padding-block: 7.5rem; /* 120px on home */
+}
+
+.feature-grid--page {
+  padding-block: 10rem; /* 160px on the Features page */
+}
+
+.feature-grid__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1.875rem; /* 30px */
+  row-gap: 6.5rem; /* 104px */
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.5rem; /* every icon sits in a 72px tall box */
+}
+
+.feature__title {
+  margin-top: 3rem;
+}
+
+.feature__description {
+  margin-top: 1rem;
+}
+
+/* Tablet (768) */
+@media (max-width: 63.9375rem) {
+  .feature-grid--home .feature-grid__list {
+    grid-template-columns: 1fr;
+    max-width: 28.5625rem; /* 457px */
+    row-gap: 4.5rem;
+  }
+
+  .feature-grid--page {
+    padding-block: 7rem; /* 112px */
+  }
+
+  .feature-grid--page .feature-grid__list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 0.6875rem; /* 11px */
+    row-gap: 4.5rem; /* 72px */
+  }
+}
+
+/* Mobile (375) — single column */
+@media (max-width: 47.9375rem) {
+  .feature-grid {
+    padding-block: 5rem; /* 80px */
+  }
+
+  .feature-grid--page {
+    padding-block: 4rem 5.6875rem; /* 64px / 91px */
+  }
+
+  .feature-grid .feature-grid__list,
+  .feature-grid--page .feature-grid__list {
+    grid-template-columns: 1fr;
+    row-gap: 3.5rem; /* 56px */
+  }
+}
